@@ -11,7 +11,7 @@ class BubbleSort(Sorter):
 
         for i in range(n):
 
-            for j in range(0, n - 1):
+            for j in range(0, n - i - 1):
 
                 if key(arr[j]) > key(arr[j + 1]):
                     temp = arr[j]
