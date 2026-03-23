@@ -47,3 +47,4 @@ class SalesDataLoader:
                 results.append(sale)
             
         return results
+    
