@@ -1,8 +1,13 @@
 import time
 import os
 from data_loader.data_loader import SalesDataLoader
-from business.company import company
+from business.company import Company
 from sorter.bubble_sort import BubbleSort
+from sorter.insertion_sort import InsertionSort
+from sorter.quick_sort import QuickSort
+from sorter.selection_sort import SelectionSort
+from sorter.merge_sort import MergeSort
+
 
 if __name__ == "__main__":
 
@@ -17,14 +22,14 @@ if __name__ == "__main__":
     loader.load_data()  # don't forget this line!
 
     # Load only the first 1000 records for testing
-    sales_data = loader.get_data_by_size(1000)
+    sales_data = loader.get_data_by_size(10000)
 
     print(f"Loaded {len(sales_data)} sales records.\n")
 
     # -----------------------------------
     # 2. Create Company Object
     # -----------------------------------
-    company = company("TechCorp", sales_data)
+    company = Company("TechCorp", sales_data)
 
     print("Company Summary:")
     print(f"Total Records: {company.total_sales_count()}")
@@ -34,6 +39,10 @@ if __name__ == "__main__":
     # 3. Choose Sorting Algorithm
     # -----------------------------------
     bubble_sort = BubbleSort()
+    insertion_sort = InsertionSort()
+    quick_sort = QuickSort()
+    selectrion_sort = SelectionSort()
+    merge_sort = MergeSort()
 
     # -----------------------------------
     # 4. Time Sorting Operation
@@ -41,7 +50,7 @@ if __name__ == "__main__":
     start = time.perf_counter()
 
     sorted_sales = company.sort_sales(
-        bubble_sort,
+        quick_sort,
         key_function=lambda sale: sale.total_sales
     )
 
@@ -57,11 +66,13 @@ if __name__ == "__main__":
     # Since Bubble Sort sorts in ascending order,
     # we retrieve the top 10 by iterating backwards
     top_sales = company.get_top_sales(
-        bubble_sort,
+        quick_sort,
         n=10
     )
 
     for sale in top_sales:
         print(sale)
 
+    total_revenue = company.total_revenue()
+    print("\nthe total revenue is: ", total_revenue)
     print("\nDemo Complete.")
