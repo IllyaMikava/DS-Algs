@@ -1,4 +1,4 @@
-class company:
+class Company:
     def __init__(self, name, sales_list=None):
         self.name = name
         self.__sales = sales_list if sales_list is not None else []
